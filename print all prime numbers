@@ -1,0 +1,38 @@
+Problem: Given an integer N, print all prime numbers up to N using the Sieve of Eratosthenes algorithm.
+
+Example:
+Input: N = 20
+Output: 2, 3, 5, 7, 11, 13, 17, 19
+
+
+
+
+
+public class Main{
+    public static void sieve(int N) {
+        boolean[] isPrime = new boolean[N + 1];
+        for (int i = 0; i <= N; i++) {
+            isPrime[i] = true;
+        }
+        isPrime[0] = isPrime[1] = false;
+
+        for (int p = 2; p * p <= N; p++) {
+            if (isPrime[p]) {
+                for (int i = p * p; i <= N; i += p) {
+                    isPrime[i] = false;
+                }
+            }
+        }
+
+        for (int i = 2; i <= N; i++) {
+            if (isPrime[i]) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int N = 20;
+        sieve(N);
+    }
+}
